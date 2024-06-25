@@ -58,9 +58,9 @@ Environment variables are used in the entry point script to render configuration
 
 - `RECORDING` - Enable recording features using `rtpagent-recording` daemon. Defaults to `nil` or false.
 - `RECORDING_FORMAT` - Format of recorded files. Acceptable values are `wav`, `mp3`.
-- 'RECORDING_DIR' - Full path where to store recorded files and metadata. Defaults to '/recording'.
-- 'RECORDING_MIX' -  Enable mix feature to merge both legs into a single recording. Defaults to `1` or true.
-- 'RECORDING_METHOD' - Method utilized for recording. Acceptable values are `proc`, `pcap`.
+- `RECORDING_DIR` - Full path where to store recorded files and metadata. Defaults to `/recording`.
+- `RECORDING_MIX` -  Enable mix feature to merge both legs into a single recording. Defaults to `1` or true.
+- `RECORDING_METHOD` - Method utilized for recording. Acceptable values are `proc`, `pcap`.
 
 
 ## Exposed ports
