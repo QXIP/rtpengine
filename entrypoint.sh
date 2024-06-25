@@ -57,6 +57,18 @@ if [ -n "$HOMER_ADDR" ]; then
   echo "homer-id=$HOMER_ID" >> /opt/rtpengine/rtpengine.conf
 fi
 
+if [ -n "$RECORDING" ]; then
+  [ -z "$RECORDING_FORMAT" ] && { export RECORDING_FORMAT=wav; }
+  [ -z "$RECORDING_DIR" ] && { export RECORDING_DIR=/recording; }
+  [ -z "$RECORDING_MIX" ] && { export RECORDING_MIX=1; }
+  sed -i -e "s/RECORDING_FORMAT/$RECORDING_FORMAT/g" /opt/rtpengine/rtpengine-recording.conf
+  sed -i -e "s/RECORDING_DIR/$RECORDING_DIR/g" /opt/rtpengine/rtpengine-recording.conf
+  sed -i -e "s/RECORDING_MIX/$RECORDING_MIX/g" /opt/rtpengine/rtpengine-recording.conf
+  # Start RTPEngine recording process
+  echo 'del 0' > /proc/rtpengine/control || true
+  rtpengine-recording --config-file /opt/rtpengine/rtpengine-recording.conf &
+fi
+
 if [ "$1" = 'rtpengine' ]; then
   shift
   exec rtpengine --config-file /opt/rtpengine/rtpengine.conf  "$@"
