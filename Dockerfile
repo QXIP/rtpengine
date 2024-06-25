@@ -31,6 +31,7 @@ RUN groupadd -r rtpengine && useradd -r -g rtpengine rtpengine
 
 # NOTE: To include in-kernel operations and recording copy the entire build folder
 COPY --from=builder /build/ngcp-rtpengine-daemon_*.deb /tmp/
+COPY --from=builder /build/ngcp-rtpengine-recording-daemon_*.deb /tmp/
 COPY --from=builder /usr/bin/netdiscover /usr/bin/netdiscover
 COPY ./entrypoint.sh /opt/rtpengine/entrypoint.sh
 COPY ./rtpengine.conf /opt/rtpengine/rtpengine.conf
