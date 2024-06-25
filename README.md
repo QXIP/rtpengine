@@ -54,6 +54,15 @@ Environment variables are used in the entry point script to render configuration
 - `HOMER_PROTOCOL` - Protocol used to send RTP statistics to the HOMER server. Acceptable values are: `udp` and `tcp`. Defaults to `udp`
 - `HOMER_ID` - ID of the HOMER server. Defaults to random four digit number.
 
+### Recording Variables _(optional)_
+
+- `RECORDING` - Enable recording features using `rtpagent-recording` daemon. Defaults to `nil` or false.
+- `RECORDING_FORMAT` - Format of recorded files. Acceptable values are `wav`, `mp3`.
+- 'RECORDING_DIR' - Full path where to store recorded files and metadata. Defaults to '/recording'.
+- 'RECORDING_MIX' -  Enable mix feature to merge both legs into a single recording. Defaults to `1` or true.
+- 'RECORDING_METHOD' - Method utilized for recording. Acceptable values are `proc`, `pcap`.
+
+
 ## Exposed ports
 
 - `8080` - Default HTTP port
