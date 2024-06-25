@@ -35,6 +35,7 @@ COPY --from=builder /build/ngcp-rtpengine-recording-daemon_*.deb /tmp/
 COPY --from=builder /usr/bin/netdiscover /usr/bin/netdiscover
 COPY ./entrypoint.sh /opt/rtpengine/entrypoint.sh
 COPY ./rtpengine.conf /opt/rtpengine/rtpengine.conf
+COPY ./rtpengine-recording.conf /opt/rtpengine/rtpengine-recording.conf
 
 RUN apt-get update && \
   mkdir -p /etc/modprobe.d/ && \
