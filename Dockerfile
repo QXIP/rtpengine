@@ -33,9 +33,6 @@ RUN groupadd -r rtpengine && useradd -r -g rtpengine rtpengine
 COPY --from=builder /build/ngcp-rtpengine-daemon_*.deb /tmp/
 COPY --from=builder /build/ngcp-rtpengine-recording-daemon_*.deb /tmp/
 COPY --from=builder /usr/bin/netdiscover /usr/bin/netdiscover
-COPY ./entrypoint.sh /opt/rtpengine/entrypoint.sh
-COPY ./rtpengine.conf /opt/rtpengine/rtpengine.conf
-COPY ./rtpengine-recording.conf /opt/rtpengine/rtpengine-recording.conf
 
 RUN apt-get update && \
   mkdir -p /etc/modprobe.d/ && \
@@ -63,6 +60,11 @@ RUN apt-get update && \
   libxmlrpc-core-c3 && \
   apt-get -y install /tmp/*.deb && \
   rm -rf /var/lib/apt/lists/* /tmp/*.deb
+
+# Copy configuration files and entrypoint
+COPY ./entrypoint.sh /opt/rtpengine/entrypoint.sh
+COPY ./rtpengine.conf /opt/rtpengine/rtpengine.conf
+COPY ./rtpengine-recording.conf /opt/rtpengine/rtpengine-recording.conf
 
 RUN chown -R rtpengine:rtpengine . && \
   chmod +x entrypoint.sh
