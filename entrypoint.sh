@@ -62,22 +62,24 @@ if [ -n "$RECORDING" ]; then
   [ -z "$RECORDING_DIR" ] && { export RECORDING_DIR=/recording; }
   [ -z "$RECORDING_MIX" ] && { export RECORDING_MIX=1; }
   [ -z "$RECORDING_METHOD" ] && { export RECORDING_METHOD=proc; }
-  sed -i -e "s/RECORDING_FORMAT/$RECORDING_FORMAT/g" /opt/rtpengine/rtpengine-recording.conf
-  sed -i -e "s/RECORDING_DIR/$RECORDING_DIR/g" /opt/rtpengine/rtpengine-recording.conf
-  sed -i -e "s/RECORDING_MIX/$RECORDING_MIX/g" /opt/rtpengine/rtpengine-recording.conf
-  sed -i -e "s/RECORDING_METHOD/$RECORDING_METHOD/g" /opt/rtpengine/rtpengine.conf
-  sed -i -e "s/RECORDING_FORMAT/$RECORDING_FORMAT/g" /opt/rtpengine/rtpengine.conf
-  sed -i -e "s/RECORDING_DIR/$RECORDING_DIR/g" /opt/rtpengine/rtpengine.conf
+  sed -i -e "s|RECORDING_FORMAT|$RECORDING_FORMAT|g" /opt/rtpengine/rtpengine-recording.conf
+  sed -i -e "s|RECORDING_DIR|$RECORDING_DIR|g" /opt/rtpengine/rtpengine-recording.conf
+  sed -i -e "s|RECORDING_MIX|$RECORDING_MIX|g" /opt/rtpengine/rtpengine-recording.conf
+  sed -i -e "s|RECORDING_METHOD|$RECORDING_METHOD|g" /opt/rtpengine/rtpengine.conf
+  sed -i -e "s|RECORDING_FORMAT|$RECORDING_FORMAT|g" /opt/rtpengine/rtpengine.conf
+  sed -i -e "s|RECORDING_DIR|$RECORDING_DIR|g" /opt/rtpengine/rtpengine.conf
   # Start RTPEngine recording process
-  echo 'del 0' > /proc/rtpengine/control || true
+  if [ -d /proc/rtpengine ]; then
+    echo 'del 0' > /proc/rtpengine/control || true
+  fi
   rtpengine-recording --config-file /opt/rtpengine/rtpengine-recording.conf &
 else 
   [ -z "$RECORDING_METHOD" ] && { export RECORDING_METHOD=pcap; }
   [ -z "$RECORDING_FORMAT" ] && { export RECORDING_FORMAT=eth; }
   [ -z "$RECORDING_DIR" ] && { export RECORDING_DIR=/recording; }
-  sed -i -e "s/RECORDING_METHOD/$RECORDING_METHOD/g" /opt/rtpengine/rtpengine.conf
-  sed -i -e "s/RECORDING_FORMAT/$RECORDING_FORMAT/g" /opt/rtpengine/rtpengine.conf
-  sed -i -e "s/RECORDING_DIR/$RECORDING_DIR/g" /opt/rtpengine/rtpengine.conf
+  sed -i -e "s|RECORDING_METHOD|$RECORDING_METHOD|g" /opt/rtpengine/rtpengine.conf
+  sed -i -e "s|RECORDING_FORMAT|$RECORDING_FORMAT|g" /opt/rtpengine/rtpengine.conf
+  sed -i -e "s|RECORDING_DIR|$RECORDING_DIR|g" /opt/rtpengine/rtpengine.conf
 fi
 
 if [ "$1" = 'rtpengine' ]; then
