@@ -69,6 +69,7 @@ if [ -n "$RECORDING" ]; then
   sed -i -e "s|RECORDING_FORMAT|$RECORDING_FORMAT|g" /opt/rtpengine/rtpengine.conf
   sed -i -e "s|RECORDING_DIR|$RECORDING_DIR|g" /opt/rtpengine/rtpengine.conf
   # Start RTPEngine recording process
+  depmod -a && modprobe xt_RTPENGINE
   if [ -d /proc/rtpengine ]; then
     echo 'del 0' > /proc/rtpengine/control || true
   fi
