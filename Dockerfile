@@ -15,9 +15,11 @@ RUN apt-get update && apt-get -y install build-essential git curl kmod linux-hea
   && git checkout ${TAG_NAME} \
   && apt-get -y build-dep -Ppkg.ngcp-rtpengine.nobcg729 . \
   && dpkg-buildpackage -Ppkg.ngcp-rtpengine.nobcg729 \
-  && cd kernel-module && make && cd .. \
   && curl -qL -o /usr/bin/netdiscover https://github.com/CyCoreSystems/netdiscover/releases/download/v1.2.5/netdiscover.linux.amd64 \
   && chmod +x /usr/bin/netdiscover
+
+## Build xt_RTPENGINE.ko
+RUN cd rtpengine/kernel-module && make && ls -alF *.ko
 
 ##
 ## Runner
