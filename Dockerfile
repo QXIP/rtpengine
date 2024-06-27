@@ -1,7 +1,7 @@
 ##
 ## Build rtpengine from source
 ##
-FROM debian:bookworm AS builder
+FROM debian:12.5 AS builder
 
 WORKDIR /build
 
@@ -24,7 +24,7 @@ RUN cd rtpengine/kernel-module && make && ls -alF *.ko
 ##
 ## Runner
 ##
-FROM debian:bookworm
+FROM debian:12.5
 
 WORKDIR /opt/rtpengine
 
