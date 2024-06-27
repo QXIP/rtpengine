@@ -78,7 +78,7 @@ COPY ./rtpengine-recording.conf /opt/rtpengine/rtpengine-recording.conf
 RUN chown -R rtpengine:rtpengine . && \
   chmod +x entrypoint.sh
 
-USER rtpengine
+# USER rtpengine
 
 ENTRYPOINT ["/opt/rtpengine/entrypoint.sh"]
 CMD ["rtpengine"]
