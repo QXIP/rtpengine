@@ -37,7 +37,7 @@ COPY --from=builder /build/ngcp-rtpengine-daemon_*.deb /tmp/
 COPY --from=builder /build/ngcp-rtpengine-recording-daemon_*.deb /tmp/
 COPY --from=builder /build/ngcp-rtpengine-kernel-dkms_*.deb /tmp/
 COPY --from=builder /build/ngcp-rtpengine-utils_*.deb /tmp/
-COPY --from=builder /build/kernel-module/xt_RTPENGINE.ko /tmp/
+COPY --from=builder /build/rtpengine/kernel-module/xt_RTPENGINE.ko /tmp/
 COPY --from=builder /usr/bin/netdiscover /usr/bin/netdiscover
 
 RUN apt-get update && \
