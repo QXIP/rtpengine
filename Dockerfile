@@ -6,7 +6,7 @@ FROM debian:12.5 AS builder
 WORKDIR /build
 
 ARG TAG_NAME=master
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get -y install build-essential git curl kmod linux-headers-$(uname -r) linux-image-$(uname -r) \
   && echo 'man-db man-db/auto-update boolean false' | debconf-set-selections \
@@ -28,7 +28,7 @@ FROM debian:12.5
 
 WORKDIR /opt/rtpengine
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN groupadd -r rtpengine && useradd -r -g rtpengine rtpengine
 
